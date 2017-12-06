@@ -1,0 +1,36 @@
+<div class="container">
+
+  <form class="search-form">
+    <h2>Enter the GitHub User name</h2>
+    <mat-form-field class="full-width">
+
+      <input matInput
+        placeholder="Search..."
+        #searchInput
+        (keyup.enter)="handleChange(searchInput.value)"
+        [minLength]="minLength">
+
+      <mat-error *ngIf="minLength > searchInput.length">
+        Minimal search string length is {{ minLength }} chars! Now it's {{ searchInput.length }}
+      </mat-error>
+
+    </mat-form-field>
+
+    <div class="full-width">
+      <mat-radio-group class="radio-group" [(ngModel)]="checkedField"  name="switchField">
+        <mat-radio-button matInput class="radio-button" *ngFor="let field of checkedFields" [value]="field">
+          {{field}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+  </form>
+
+  <app-results
+    [isLoaded]="isLoaded"
+    [user]="user"
+    [repos]="repos"
+    [checkedField]="checkedField">
+  </app-results>
+</div>
+
