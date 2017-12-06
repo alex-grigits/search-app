@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -8,14 +10,13 @@ import {
   MatInputModule,
   MatCardModule,
   MatListModule,
-  MatRadioModule
+  MatRadioModule,
+  MatIconModule
  } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SearchComponent } from './search/search.component';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { HttpService } from './http.service';
 import { ResultsComponent } from './results/results.component';
 
@@ -36,10 +37,21 @@ import { ResultsComponent } from './results/results.component';
     MatCardModule,
     MatListModule,
     MatRadioModule,
+    MatIconModule,
     FormsModule,
     HttpModule
   ],
   providers: [HttpService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    MatButtonModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatCardModule,
+    MatListModule,
+    MatRadioModule,
+    MatIconModule
+  ]
 })
 export class AppModule { }

@@ -19,9 +19,9 @@ export class SearchComponent implements OnInit {
   checkedField: string = 'User';
 
   checkedFields = [
-      'User',
-      'Repos'
-    ];
+    'User',
+    'Repos'
+  ];
 
   constructor(private service: HttpService) { }
 
