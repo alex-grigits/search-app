@@ -1,5 +1,5 @@
 <div class="search-result">
-
+  <h2 *ngIf="searchText">Results for {{ searchText }}</h2>
   <mat-card class="card" *ngIf="isLoaded && checkedField === 'User'">
     <mat-card-header>
       <div mat-card-avatar class="avatar-container">
@@ -11,7 +11,7 @@
     <mat-card-content>
       <mat-list role="list">
         <mat-list-item role="list-item"> Public repos: {{ user.public_repos }} </mat-list-item>
-        <mat-list-item role="list-item"> Created at: {{ user.created_at }} </mat-list-item>
+        <mat-list-item role="list-item"> Created at: {{ user.created_at | date }} </mat-list-item>
       </mat-list>
     </mat-card-content>
     <mat-card-actions>
@@ -19,28 +19,21 @@
     </mat-card-actions>
   </mat-card>
 
+  <!-- <mat-list *ngIf="isLoaded && checkedField === 'Repos'">
+    <mat-list-item *ngFor="let repo of repos">
+      <mat-icon mat-list-icon>folder</mat-icon>
+      <h3 mat-line>
+        <a mat-button color="accent" [href]="repo.html_url">
+          {{repo.name}}
+        </a>
+      </h3>
+      <p mat-line>Forks: {{ repo.forks }}</p>
+      <p mat-line>Watchers: {{ repo.watchers }}</p>
+      <p mat-line>Created at: {{ repo.created_at | date }}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list> -->
 
-  <div class="repos-result" *ngFor="let repo of repos">
-    <mat-card class="card" *ngIf="isLoaded && checkedField === 'Repos'">
-      <mat-card-header>
-        <div mat-card-avatar class="avatar-container">
-          <img class="avatar" [src]="user.avatar_url" [alt]="user.name">
-        </div>
-        <mat-card-title>{{ repo.name }}</mat-card-title>
-        <mat-card-subtitle>{{ repo.description
-          }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-list role="list">
-          <mat-list-item role="list-item"> Forks: {{ repo.forks }} </mat-list-item>
-          <mat-list-item role="list-item"> Watchers: {{ repo.watchers }} </mat-list-item>
-          <mat-list-item role="list-item"> Created at: {{ repo.created_at }} </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-      <mat-card-actions>
-        <a mat-raised-button color="accent" class="full-width" [href]="repo.html_url" target="_blank">View Repo</a>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+  <app-table *ngIf="isLoaded && checkedField === 'Repos'" [searchText]="searchText" ></app-table>
 
 </div>

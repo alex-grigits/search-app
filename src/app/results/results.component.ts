@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {DataSource} from '@angular/cdk/collections';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-results',
@@ -11,6 +14,8 @@ export class ResultsComponent implements OnInit {
   @Input() user: string = '';
   @Input() repos = [];
   @Input() checkedField: string = 'User';
+  @Input() searchText: string = '';
+
 
   constructor() { }
 
