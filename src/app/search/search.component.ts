@@ -10,7 +10,7 @@ import { NgStyle } from '@angular/common';
 })
 export class SearchComponent implements OnInit {
 
-  searchStr: string = '';
+  searchText: string = '';
   minLength: number = 4;
 
   isLoaded: boolean = false;
@@ -33,12 +33,14 @@ export class SearchComponent implements OnInit {
       this.service.getUser(searchText)
         .subscribe(user => {
           this.user = user;
+          this.searchText = searchText;
           this.isLoaded = true;
         });
     } else {
       this.service.getRepos(searchText)
         .subscribe(repos => {
           this.repos = repos;
+          this.searchText = searchText;
           this.isLoaded = true;
           console.log(this.repos);
         })

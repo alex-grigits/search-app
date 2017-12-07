@@ -1,5 +1,5 @@
 <div class="search-result">
-
+  <h2 *ngIf="searchText">Results for {{ searchText }}</h2>
   <mat-card class="card" *ngIf="isLoaded && checkedField === 'User'">
     <mat-card-header>
       <div mat-card-avatar class="avatar-container">
@@ -19,7 +19,7 @@
     </mat-card-actions>
   </mat-card>
 
-  <mat-list *ngIf="isLoaded && checkedField === 'Repos'">
+  <!-- <mat-list *ngIf="isLoaded && checkedField === 'Repos'">
     <mat-list-item *ngFor="let repo of repos">
       <mat-icon mat-list-icon>folder</mat-icon>
       <h3 mat-line>
@@ -32,6 +32,8 @@
       <p mat-line>Created at: {{ repo.created_at | date }}</p>
     </mat-list-item>
     <mat-divider></mat-divider>
-  </mat-list>
+  </mat-list> -->
+
+  <app-table *ngIf="isLoaded && checkedField === 'Repos'" [searchText]="searchText" ></app-table>
 
 </div>
